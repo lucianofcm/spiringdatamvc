@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="sistema@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="sistema">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="world"/>
+    <table id="9" parent="2" name="grupo"/>
+    <table id="10" parent="2" name="hibernate_sequence"/>
+    <table id="11" parent="2" name="member"/>
+    <table id="12" parent="2" name="perfis"/>
+    <column id="13" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="9" name="nome">
+      <Position>2</Position>
+      <DataType>varchar(25)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="15" parent="9" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="16" parent="10" name="next_val">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="17" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="11" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="11" name="name">
+      <Position>3</Position>
+      <DataType>varchar(25)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="11" name="phone_number">
+      <Position>4</Position>
+      <DataType>varchar(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="11" name="grupo_id">
+      <Position>5</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="22" parent="11" name="UK9qv6yhjqm8iafto8qk452gx8h">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="23" parent="11" name="FK8luh9su221po4v2qf2cemod9v">
+      <ColNames>grupo_id</ColNames>
+    </index>
+    <key id="24" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="25" parent="11" name="UK9qv6yhjqm8iafto8qk452gx8h">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UK9qv6yhjqm8iafto8qk452gx8h</UnderlyingIndexName>
+    </key>
+    <foreign-key id="26" parent="11" name="FK8luh9su221po4v2qf2cemod9v">
+      <ColNames>grupo_id</ColNames>
+      <RefSchemaName>sistema</RefSchemaName>
+      <RefTableName>grupo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="27" parent="12" name="Member_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="12" name="perfis">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="29" parent="12" name="FKsya5ft7c16m2q0y8c6ewcynq1">
+      <ColNames>Member_id</ColNames>
+    </index>
+    <foreign-key id="30" parent="12" name="FKsya5ft7c16m2q0y8c6ewcynq1">
+      <ColNames>Member_id</ColNames>
+      <RefSchemaName>sistema</RefSchemaName>
+      <RefTableName>member</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
