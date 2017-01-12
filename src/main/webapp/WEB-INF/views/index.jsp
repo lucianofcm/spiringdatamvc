@@ -35,17 +35,16 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">Dropdown <span class="caret"></span></a>
+                               aria-expanded="false">Menu <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">Link1</a></li>
+                                <li><a href="#">Link2</a></li>
+                                <li><a href="#">Llink2</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">Link3</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -56,32 +55,35 @@
 
 
     <div id="content">
-        <h1>Bem vindo a minha aplicaÃ§Ã£o para estudo</h1>
-        <form:form commandName="newMember" id="reg">
+        <h1>Bem vindo a minha aplicação para estudo</h1>
+        <form:form commandName="newMember" id="reg" class="form-horizontal">
+        
             <h2>Member Registration</h2>
             <p>Enforces annotation-based constraints defined on the model class.</p>
             <table>
                 <tbody>
+               
                 <tr>
-                    <td><form:label path="name">Name:</form:label></td>
-                    <td><form:input path="name"/></td>
+                	<td><form:label path="name" class="col-lg-2 control-label">Name:</form:label></td>
+                    <td><form:input path="name" class="form-control" /></td>
                     <td><form:errors class="invalid" path="name"/></td>
                 </tr>
+               
                 <tr>
-                    <td><form:label path="email">Email:</form:label></td>
-                    <td><form:input path="email"/></td>
+                    <td><form:label path="email" class="col-lg-2 control-label">Email:</form:label></td>
+                    <td><form:input path="email" class="form-control" /></td>
                     <td><form:errors class="invalid" path="email"/></td>
                 </tr>
                 <tr>
                     <td>
-                        <form:label path="phoneNumber">Phone #:</form:label>
-                    <td><form:input path="phoneNumber"/></td>
+                        <form:label path="phoneNumber" class="col-lg-2 control-label">Phone #:</form:label>
+                    <td><form:input path="phoneNumber" class="form-control"/></td>
                     <td><form:errors class="invalid" path="phoneNumber"/></td>
                 </tr>
                 <tr>
                     <td>
-                        <form:label path="Grupo">Grupo #:</form:label>
-                    <td><form:select path="Grupo.id" items="${grupos}" itemValue="id" itemLabel="nome"/></td>
+                        <form:label path="Grupo" class="col-lg-2 control-label">Grupo #:</form:label>
+                    <td><form:select path="Grupo.id" items="${grupos}" itemValue="id" itemLabel="nome" class="form-control" /></td>
                     <td><form:errors class="invalid" path="grupo"/></td>
                 </tr>
 
@@ -90,7 +92,7 @@
             <table>
                 <tr>
                     <td>
-                        <input type="submit" value="Register" class="register"/>
+                        <input type="submit" value="Register" class="register"  class="btn btn-primary"/>
                     </td>
                 </tr>
             </table>
