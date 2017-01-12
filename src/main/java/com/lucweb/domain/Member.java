@@ -16,8 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @NamedQueries({ @NamedQuery(name = "carregaMembroEGrupos",
-        query = "select  m from Member m\n" +
-                "join m.grupo g where ") })
+        query = "select m from Member m join m.grupo g where m.id = :member") })
 public class Member implements Serializable {
     /**
      * Default value included to remove warning. Remove or modify at will.
