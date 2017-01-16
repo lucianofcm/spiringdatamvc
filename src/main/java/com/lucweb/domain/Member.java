@@ -1,22 +1,30 @@
 package com.lucweb.domain;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @NamedQueries({ @NamedQuery(name = "carregaMembroEGrupos",
-        query = "select m from Member m join m.grupo g where m.id = :member") })
+        query = "select m from Member m join m.grupos g where m.id = :member") })
 public class Member implements Serializable {
     /**
      * Default value included to remove warning. Remove or modify at will.
@@ -44,9 +52,10 @@ public class Member implements Serializable {
     private String phoneNumber;
 
 
-    @ManyToOne
-    @JoinColumn(name = "grupo_id")
-    private Grupo grupo;
+    @ManyToMany
+    @JoinTable(name="grupos_members")
+    private List<Grupo> grupos;
+    
 
     public Long getId() {
         return id;
@@ -80,12 +89,63 @@ public class Member implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Grupo getGrupo() {
-        return grupo;
-    }
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
 
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((grupos == null) ? 0 : grupos.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Member other = (Member) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (grupos == null) {
+			if (other.grupos != null)
+				return false;
+		} else if (!grupos.equals(other.grupos))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		return true;
+	}
+
+  
 
 }

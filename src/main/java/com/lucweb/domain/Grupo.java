@@ -25,8 +25,8 @@ public class Grupo {
     @Size(min = 1, max = 25)
     private String nome;
 
-    @OneToMany
-    private List<Member> member;
+    @ManyToMany(mappedBy="grupos")
+    private List<Member> members;
 
     public Long getId() {
         return id;
@@ -44,13 +44,51 @@ public class Grupo {
         this.nome = nome;
     }
 
-    public List<Member> getMember() {
-        return member;
-    }
+	public List<Member> getMembers() {
+		return members;
+	}
 
-    public void setMember(List<Member> member) {
-        this.member = member;
-    }
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((members == null) ? 0 : members.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grupo other = (Grupo) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (members == null) {
+			if (other.members != null)
+				return false;
+		} else if (!members.equals(other.members))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+
 
 
 }
